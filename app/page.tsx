@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    <div>
-      <h1>LegalEase Project 🚀</h1>
-      <p>Welcome to Lawyer Hiring Platform</p>
+    <div className="text-center mt-10">
+      <h1>Welcome to LegalEase.</h1>
+      <p>Find your lawyer easily.</p>
     </div>
   );
 }
