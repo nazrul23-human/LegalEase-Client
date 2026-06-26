@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
             const res = await registerUser(data);
 
             if (res.data.token) {
-                localStorage.setItem("token", res.data.token);
+                document.cookie = `token=${res.data.token}; path=/`;
                 localStorage.setItem("role", res.data.user.role);
             }
 
