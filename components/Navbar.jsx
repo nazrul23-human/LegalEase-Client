@@ -11,7 +11,6 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [role, setRole] = useState(null);
 
-
     const pathname = usePathname();
 
     useEffect(() => {
@@ -62,20 +61,15 @@ export default function Navbar() {
                             {role === "user" && <option>User</option>}
                         </select>
                     )}
-                    {/* {token && (
-                        <span className="bg-white text-blue-700 px-2 py-1 rounded text-sm">
-                            {role}
-                        </span>
-                    )} */}
-
+                
 
                     {token ? (
                         <>
                             <Image
                                 src="https://i.ibb.co/placeholder-avatar.png"
                                 alt="user avatar"
-                                width={32}
-                                height={32}
+                                width={30}
+                                height={30}
                                 className="rounded-full border"
                             />
 
