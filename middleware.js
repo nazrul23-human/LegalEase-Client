@@ -2,26 +2,30 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
 
-    const role = req.cookies.get("role")?.value;
     const token = req.cookies.get("token")?.value;
+    const role = req.cookies.get("role")?.value;
     const url = req.nextUrl.pathname;
 
-    // protected routes
-    const protectedRoutes = ["/dashboard", "/profile"];
+    const protectedRoutes = ["/dashboard", "/admin", "/lawyer"];
 
-    // LOGIN CHECK
-    if (protectedRoutes.includes(url)) {
+    if (protectedRoutes.some(route => url.startsWith(route))) {
+
         if (!token) {
             return NextResponse.redirect(new URL("/login", req.url));
         }
     }
 
-    //ADMIN ROUTE CHECK
-    if (url.startsWith("/admin")) {
-        if (role !== "admin") {
-            return NextResponse.redirect(new URL("/", req.url));
-        }
+    if (url.startsWith("/admin") && role !== "admin") {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    if (url.startsWith("/lawyer") && role !== "lawyer") {
+        return NextResponse.redirect(new URL("/", req.url));
     }
 
     return NextResponse.next();
 }
+
+export const config = {
+    matcher: ["/dashboard/:path*", "/admin/:path*", "/lawyer/:path*"]
+};
