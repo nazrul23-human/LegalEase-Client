@@ -20,6 +20,28 @@ export default function Navbar() {
         setRole(r);
     }, []);
 
+    useEffect(() => {
+        const fetchUser = async () => {
+            if (!token) return;
+
+            try {
+                const res = await fetch("http://localhost:5000/api/user/me", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+
+                const data = await res.json();
+                setUser(data.user);
+
+            } catch (err) {
+                console.log("User fetch error:", err);
+            }
+        };
+
+        fetchUser();
+    }, [token]);
+
 
     const handleLogout = () => {
         localStorage.removeItem("token");
