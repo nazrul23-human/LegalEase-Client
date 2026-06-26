@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+import Avatar from "../components/Avatar";
 
 export default function Navbar() {
 
@@ -61,18 +61,11 @@ export default function Navbar() {
                             {role === "user" && <option>User</option>}
                         </select>
                     )}
-                
+
 
                     {token ? (
                         <>
-                            <Image
-                                src="https://i.ibb.co/placeholder-avatar.png"
-                                alt="user avatar"
-                                width={30}
-                                height={30}
-                                className="rounded-full border"
-                            />
-
+                            <Avatar user={{ name: role }} />
                             <button
                                 onClick={handleLogout}
                                 className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"

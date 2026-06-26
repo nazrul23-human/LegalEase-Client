@@ -16,6 +16,15 @@ export const AuthProvider = ({ children }) => {
                 document.cookie = `token=${res.data.token}; path=/`;
                 localStorage.setItem("role", res.data.user.role);
             }
+            if (res.data.user.role === "admin") {
+                router.push("/admin");
+            }
+            else if (res.data.user.role === "lawyer") {
+                router.push("/lawyer");
+            }
+            else {
+                router.push("/dashboard");
+            }
 
             return res.data;
         } catch (error) {
