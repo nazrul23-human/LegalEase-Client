@@ -8,16 +8,29 @@ export default function Profile() {
     const [avatar, setAvatar] = useState("");
     const [token, setToken] = useState("");
 
-    // 🔥 LOAD TOKEN (optional for display/debug)
+    //LOAD TOKEN (optional for display/debug)
     useEffect(() => {
         const t = document.cookie;
         setToken(t);
     }, []);
 
-    // 🔥 UPDATE PROFILE (future API)
-    const updateProfile = () => {
-        alert("Profile Updated (API next step)");
-    };
+    // UPDATE PROFILE (future API)
+    const updateProfile = async () => {
+    const res = await fetch("http://localhost:5000/api/user/update", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+            name,
+            avatar
+        })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+};
 
     return (
         <div className="p-10 max-w-xl mx-auto">
