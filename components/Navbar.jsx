@@ -58,11 +58,11 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="flex justify-between items-center px-6 py-4 bg-blue-700 text-white shadow-md">
+            <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-blue-700 text-white shadow-md">
 
                 {/* LEFT SIDE */}
                 <Link href="/" className="font-bold text-2xl">
-                    LegalEase
+                    LegalEase⚖️
                 </Link>
 
                 {/* RIGHT SIDE */}
